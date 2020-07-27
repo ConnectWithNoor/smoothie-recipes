@@ -66,10 +66,12 @@ li {
   margin-left: 5rem;
 }
 
-a {
+a,
+li {
   text-decoration: none;
   color: #000;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 /* HEADER */

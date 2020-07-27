@@ -1,11 +1,28 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../context/Auth';
 import { handleLogout } from '../util/functions';
 
 const Header = () => {
-  const { Auth } = useContext(AuthContext);
+  const { Auth, setAuth } = useContext(AuthContext);
+  const history = useHistory();
+
+  const LogoutUser = async () => {
+    try {
+      const isLoggedOut = await handleLogout();
+      if (isLoggedOut) {
+        alert('Successfully Logged out');
+        await setAuth(null);
+        history.push('/');
+      } else {
+        alert('Something Went Wrong');
+      }
+    } catch (error) {
+      console.log('error', error);
+      alert('Something Went Wrong');
+    }
+  };
 
   return (
     <div className='header'>
@@ -17,11 +34,7 @@ const Header = () => {
 
           {Auth ? (
             <>
-              <li>
-                <Link onClick={handleLogout} to='/'>
-                  Logout
-                </Link>
-              </li>
+              <li onClick={LogoutUser}>Logout</li>
 
               <li>
                 <Link to='/favourites'>Favourites</Link>

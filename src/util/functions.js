@@ -96,10 +96,10 @@ export const getFavourites = async (email) => {
   }
 };
 
-export const handleLogout = async (email) => {
+export const handleLogout = async () => {
   try {
-    // code here
-    alert(email);
+    await auth.signOut();
+    return true;
   } catch (error) {
     console.log('error', error);
     throw new Error(error);

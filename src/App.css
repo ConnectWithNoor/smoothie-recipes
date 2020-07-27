@@ -113,18 +113,19 @@ a {
   flex-wrap: wrap;
 }
 
-/* register */
+/* register and login page */
 
-.register {
+.register,
+.login {
   text-align: center;
-  width: 100%;
 }
-
+.login-title,
 .register-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin-top: 2rem;
 }
 
+.login-form,
 .register-form {
   display: flex;
   flex-direction: column;
@@ -160,19 +161,39 @@ a {
   background-color: #47dedd;
 }
 
+.remember {
+  margin: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.remember label {
+  margin-left: 1rem;
+}
+
 .cta-login {
   margin: 1rem;
   display: flex;
   justify-content: flex-end;
+  font-size: 1.3rem;
 }
 
+.cta-register {
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+}
+.cta-register a,
 .cta-login a,
 .cta-login a:link,
 .cta-login a:active {
   color: #409baf;
   transition: all 0.2s;
+  margin: 0 2rem;
 }
-
+.cta-register a:hover,
 .cta-login a:hover {
   color: #47dedd;
 }

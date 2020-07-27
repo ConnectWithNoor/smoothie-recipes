@@ -1,28 +1,27 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { handleAddFavourite } from '../util/functions';
 
 import { AuthContext } from '../context/Auth';
 
-const RecipeCard = () => {
+const RecipeCard = ({ recipe }) => {
   const { Auth } = useContext(AuthContext);
   return (
     <div className='card'>
-      <div className='img-wrapper'>
-        <img
-          className='recipe-img'
-          src={require('../assets/images/smoothie.png')}
-          alt='smoothie'
-        />
-        <img
-          className='fav-icon'
-          src={require('../assets/images/heart-fav.png')}
-          alt='heart'
-          onClick={() => handleAddFavourite(Auth)}
-        />
-      </div>
+      <Link to={`/recipes/${recipe.id}`}>
+        <div className='img-wrapper'>
+          <img className='recipe-img' src={`${recipe.image}`} alt='smoothie' />
+          <img
+            className='fav-icon'
+            src={require('../assets/images/heart-fav.png')}
+            alt='heart'
+            onClick={() => handleAddFavourite(Auth)}
+          />
+        </div>
 
-      <p className='recipe-title'>Bablish Apple Pie Smoothie</p>
+        <p className='recipe-title'>{recipe.title}</p>
+      </Link>
     </div>
   );
 };

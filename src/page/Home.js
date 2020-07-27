@@ -1,19 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import RecipeCard from '../Component/RecipeCard';
+import axios from 'axios';
+
+import { HOST, RECIPELIST } from '../contansts/end-points';
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    const fetchRecipies = async () => {
+      setIsLoading(true);
+
+      try {
+        const response = await axios.get(
+          `${HOST}${RECIPELIST}?query=healthy%20smoothie&type=${process.env.REACT_APP_TYPE}&apiKey=${process.env.REACT_APP_API_TOKEN}`
+        );
+
+        if (response.status !== 200) {
+          return setError('Something Went Wrong');
+        }
+
+        setRecipes(response.data.results);
+
+        return;
+      } catch (error) {
+        console.log('error', error);
+        return setError('Something Went Wrong');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRecipies();
+  }, []);
+
   return (
     <div className='home'>
       <div className='container'>
-        <div className='flex'>
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-          <RecipeCard />
-        </div>
+        {isLoading ? (
+          <img
+            src={require('../assets/images/loader.gif')}
+            alt='loader'
+            width='100'
+            height='100'
+            className='center'
+          />
+        ) : error ? (
+          <p className='center error-message'> {error}</p>
+        ) : (
+          <div className='flex'>
+            {recipes.map((recipe) => (
+              <RecipeCard recipe={recipe} key={recipe.id} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

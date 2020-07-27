@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { handleAddFavourite } from '../util/functions';
 
+import { AuthContext } from '../context/Auth';
+
 const RecipeCard = () => {
+  const { Auth } = useContext(AuthContext);
   return (
     <div className='card'>
       <div className='img-wrapper'>
@@ -15,7 +18,7 @@ const RecipeCard = () => {
           className='fav-icon'
           src={require('../assets/images/heart-fav.png')}
           alt='heart'
-          onClick={handleAddFavourite}
+          onClick={() => handleAddFavourite(Auth)}
         />
       </div>
 

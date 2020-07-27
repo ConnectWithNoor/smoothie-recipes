@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { handleRegister } from '../util/functions';
+import { AuthContext } from '../context/Auth';
 
 const Register = () => {
   const history = useHistory();
+  const { setAuth } = useContext(AuthContext);
 
   const [user, setUser] = useState({
     firstName: '',
@@ -28,6 +30,7 @@ const Register = () => {
       const isCreated = await handleRegister(user);
       if (isCreated) {
         alert('Registraton successful');
+        await setAuth(user.email);
         history.push('/');
       } else {
         alert(isCreated.error);

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { handleSignin } from '../util/functions';
+import { AuthContext } from '../context/Auth';
 
 const Login = () => {
   const history = useHistory();
+  const { setAuth } = useContext(AuthContext);
 
   const [user, setUser] = useState({
     email: '',
@@ -26,6 +28,7 @@ const Login = () => {
       const isCreated = await handleSignin(user);
       if (isCreated) {
         alert('Signin successful');
+        await setAuth(user.email);
         history.push('/');
       } else {
         alert(isCreated.error);

@@ -48,10 +48,10 @@ export const handleSignin = async ({ email, password }) => {
   }
 };
 
-export const handleAddFavourite = async ({ email, password }) => {
+export const handleAddFavourite = async (email) => {
   try {
     // code here
-    alert('click');
+    alert(email);
   } catch (error) {
     console.log('error', error);
     throw new Error(error);

@@ -10,8 +10,8 @@ html {
   /* 1rem = 10px/16px = 62.5% */
 }
 body {
-  color: ;
-  background: ;
+  color: #000;
+  background: #eee;
   font-family: 'Lato', sans-serif;
   font-size: 1.8rem;
   font-weight: 400;
@@ -66,4 +66,41 @@ a {
 
 .header__flex {
   display: flex;
+}
+
+/* RECIPE CARD */
+
+.card {
+  width: 23%;
+  box-shadow: 1px 1px 2px 1px 2px rgba(0, 0, 0, 0.3);
+  background: #fff;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.img-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.recipe-img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.recipe-title {
+  font-size: 2rem;
+}
+
+/* pages */
+
+.home {
+  margin-top: 3rem;
+}
+
+.home-flex {
+  display: flex;
+  flex-wrap: wrap;
 }

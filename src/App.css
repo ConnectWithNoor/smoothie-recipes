@@ -97,8 +97,18 @@ a {
 }
 
 .img-wrapper {
+  position: relative;
   width: 100%;
   overflow: hidden;
+}
+
+.fav-icon {
+  position: absolute;
+  top: 10px;
+  z-index: 100;
+  right: 10px;
+
+  cursor: pointer;
 }
 
 .recipe-img {
@@ -106,6 +116,7 @@ a {
   width: 100%;
   height: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  z-index: 99;
 }
 
 .recipe-title {

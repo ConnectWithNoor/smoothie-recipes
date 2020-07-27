@@ -47,3 +47,13 @@ export const handleSignin = async ({ email, password }) => {
     throw new Error(error);
   }
 };
+
+export const handleAddFavourite = async ({ email, password }) => {
+  try {
+    // code here
+    alert('click');
+  } catch (error) {
+    console.log('error', error);
+    throw new Error(error);
+  }
+};

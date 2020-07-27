@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { handleAddFavourite } from '../util/functions';
+
 const RecipeCard = () => {
   return (
     <div className='card'>
@@ -8,6 +10,12 @@ const RecipeCard = () => {
           className='recipe-img'
           src={require('../assets/images/smoothie.png')}
           alt='smoothie'
+        />
+        <img
+          className='fav-icon'
+          src={require('../assets/images/heart-fav.png')}
+          alt='heart'
+          onClick={handleAddFavourite}
         />
       </div>
 

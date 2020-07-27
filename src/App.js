@@ -21,7 +21,8 @@ function App() {
           <Route path='/favourites' component={Favourites} />
           <Route path='/login' component={Login} />
           <Route path='/Register' component={Register} />
-          <Route path='/recipes' component={RecipeView} />
+          <Route exact path='/recipes' component={Home} />
+          <Route path='/recipes/:id' component={RecipeView} />
         </Switch>
       </Router>
     </div>

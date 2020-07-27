@@ -77,6 +77,25 @@ export const handleAddFavourite = async (email, recipeID) => {
   }
 };
 
+export const getFavourites = async (email) => {
+  try {
+    const favRef = db.doc(`/users/${email}`);
+
+    const UserSnap = await favRef.get();
+    if (!UserSnap.exists)
+      return alert(
+        'You need to signin before marking this recipe as favourite.'
+      );
+
+    const { fav } = UserSnap.data();
+
+    return fav;
+  } catch (error) {
+    console.log('error', error);
+    alert('Something went wrong');
+  }
+};
+
 export const handleLogout = async (email) => {
   try {
     // code here

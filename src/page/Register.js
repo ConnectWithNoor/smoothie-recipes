@@ -7,6 +7,7 @@ import { AuthContext } from '../context/Auth';
 const Register = () => {
   const history = useHistory();
   const { setAuth } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [user, setUser] = useState({
     firstName: '',
@@ -26,6 +27,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const isCreated = await handleRegister(user);
       if (isCreated) {
@@ -37,68 +39,82 @@ const Register = () => {
       }
     } catch (error) {
       alert(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className='register'>
-      <div className='center'>
+    <>
+      {isLoading ? (
         <img
-          className='register-img'
-          src={require('../assets/images/lock.png')}
-          alt='signup'
+          src={require('../assets/images/loader.gif')}
+          alt='loader'
+          width='100'
+          height='100'
+          className='center'
         />
-        <p className='register-title'>Sign up</p>
-
-        <form className='register-form' onSubmit={handleSubmit}>
-          <div className='flex'>
-            <input
-              className='input'
-              type='text'
-              placeholder='First Name *'
-              required
-              name='firstName'
-              onChange={handleChange}
-              value={user.firstName}
+      ) : (
+        <div className='register'>
+          <div className='center'>
+            <img
+              className='register-img'
+              src={require('../assets/images/lock.png')}
+              alt='signup'
             />
-            <input
-              className='input'
-              type='text'
-              placeholder='Last Name *'
-              required
-              name='lastName'
-              onChange={handleChange}
-              value={user.lastName}
-            />
-          </div>
-          <input
-            className='input'
-            type='email'
-            placeholder='Email Address *'
-            required
-            name='email'
-            onChange={handleChange}
-            value={user.email}
-          />
-          <input
-            className='input'
-            type='password'
-            placeholder='Password *'
-            required
-            name='password'
-            onChange={handleChange}
-            value={user.password}
-          />
+            <p className='register-title'>Sign up</p>
 
-          <button className='btn-reg' type='submit'>
-            Sign up
-          </button>
-          <div className='cta-login'>
-            <Link to='login'>Already have an Account ? Login</Link>
+            <form className='register-form' onSubmit={handleSubmit}>
+              <div className='flex'>
+                <input
+                  className='input'
+                  type='text'
+                  placeholder='First Name *'
+                  required
+                  name='firstName'
+                  onChange={handleChange}
+                  value={user.firstName}
+                />
+                <input
+                  className='input'
+                  type='text'
+                  placeholder='Last Name *'
+                  required
+                  name='lastName'
+                  onChange={handleChange}
+                  value={user.lastName}
+                />
+              </div>
+              <input
+                className='input'
+                type='email'
+                placeholder='Email Address *'
+                required
+                name='email'
+                onChange={handleChange}
+                value={user.email}
+              />
+              <input
+                className='input'
+                type='password'
+                placeholder='Password *'
+                required
+                name='password'
+                onChange={handleChange}
+                value={user.password}
+              />
+
+              <button className='btn-reg' type='submit'>
+                Sign up
+              </button>
+              <div className='cta-login'>
+                <Link to='login'>Already have an Account ? Login</Link>
+              </div>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 import RecipeCard from '../Component/RecipeCard';
 import { AuthContext } from '../context/Auth';
 import { getFavourites } from '../util/functions';
+import LoadingImage from '../Component/LoadingImage';
 import { HOST, BULK_INFORMATION } from '../contansts/end-points';
 
 const Favourites = () => {
@@ -42,13 +43,7 @@ const Favourites = () => {
     <div className='Favourites'>
       <div className='container'>
         {isLoading ? (
-          <img
-            src={require('../assets/images/loader.gif')}
-            alt='loader'
-            width='100'
-            height='100'
-            className='center'
-          />
+          <LoadingImage />
         ) : error ? (
           <p className='center error-message'> {error}</p>
         ) : (

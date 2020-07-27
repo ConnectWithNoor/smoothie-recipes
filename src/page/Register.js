@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { handleRegister } from '../util/functions';
 import { AuthContext } from '../context/Auth';
+import LoadingImage from '../Component/LoadingImage';
 
 const Register = () => {
   const history = useHistory();
@@ -47,13 +48,7 @@ const Register = () => {
   return (
     <>
       {isLoading ? (
-        <img
-          src={require('../assets/images/loader.gif')}
-          alt='loader'
-          width='100'
-          height='100'
-          className='center'
-        />
+        <LoadingImage />
       ) : (
         <div className='register'>
           <div className='center'>

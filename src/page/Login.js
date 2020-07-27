@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 import { handleSignin } from '../util/functions';
 import { AuthContext } from '../context/Auth';
+import LoadingImage from '../Component/LoadingImage';
 
 const Login = () => {
   const history = useHistory();
@@ -45,13 +46,7 @@ const Login = () => {
   return (
     <>
       {isLoading ? (
-        <img
-          src={require('../assets/images/loader.gif')}
-          alt='loader'
-          width='100'
-          height='100'
-          className='center'
-        />
+        <LoadingImage />
       ) : (
         <div className='login'>
           <div className='center'>

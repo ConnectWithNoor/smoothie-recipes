@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import RecipeCard from '../Component/RecipeCard';
 import { HOST, RECIPELIST } from '../contansts/end-points';
+import LoadingImage from '../Component/LoadingImage';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,13 +40,7 @@ const Home = () => {
     <div className='home'>
       <div className='container'>
         {isLoading ? (
-          <img
-            src={require('../assets/images/loader.gif')}
-            alt='loader'
-            width='100'
-            height='100'
-            className='center'
-          />
+          <LoadingImage />
         ) : error ? (
           <p className='center error-message'> {error}</p>
         ) : (

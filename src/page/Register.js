@@ -5,11 +5,11 @@ const Register = () => {
   return (
     <div className='register'>
       <div className='center'>
-        {/* <img
+        <img
           className='register-img'
-          src={require('../assets/images/smoothie.png')}
+          src={require('../assets/images/lock.png')}
           alt='signup'
-        /> */}
+        />
         <p className='register-title'>Sign up</p>
 
         <form className='register-form'>

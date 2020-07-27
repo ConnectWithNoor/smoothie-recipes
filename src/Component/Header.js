@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className='header'>
       <div className='container'>
-        <ul className='header__flex'>
+        <ul className='flex'>
           <li>
             <Link to='/'>Home</Link>
           </li>

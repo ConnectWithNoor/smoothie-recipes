@@ -23,6 +23,18 @@ body {
   width: 70%;
   margin: 0 auto;
 }
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex {
+  display: flex;
+}
+
 h1 {
   font-size: 3rem;
 }
@@ -64,10 +76,6 @@ a {
   padding: 2rem;
 }
 
-.header__flex {
-  display: flex;
-}
-
 /* RECIPE CARD */
 
 .card {
@@ -97,10 +105,74 @@ a {
 /* pages */
 
 .home {
-  margin-top: 3rem;
+  padding: 3rem;
 }
 
 .home-flex {
   display: flex;
   flex-wrap: wrap;
+}
+
+/* register */
+
+.register {
+  text-align: center;
+  width: 100%;
+}
+
+.register-title {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input {
+  padding: 2rem;
+  outline: none;
+  border: none;
+  font-size: 2rem;
+  margin: 1rem;
+  border-radius: 3px;
+}
+
+.btn-reg {
+  outline: none;
+  border: none;
+  padding: 2rem;
+  background-color: #47deff;
+  margin: 1rem;
+
+  color: #fff;
+  font-weight: 800;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+}
+
+.btn-reg:hover {
+  background-color: #47dedd;
+}
+
+.cta-login {
+  margin: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cta-login a,
+.cta-login a:link,
+.cta-login a:active {
+  color: #409baf;
+  transition: all 0.2s;
+}
+
+.cta-login a:hover {
+  color: #47dedd;
 }

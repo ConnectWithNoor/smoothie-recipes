@@ -57,3 +57,13 @@ export const handleAddFavourite = async (email) => {
     throw new Error(error);
   }
 };
+
+export const handleLogout = async (email) => {
+  try {
+    // code here
+    alert(email);
+  } catch (error) {
+    console.log('error', error);
+    throw new Error(error);
+  }
+};

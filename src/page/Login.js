@@ -84,7 +84,7 @@ const Login = () => {
           </button>
           <div className='cta-register'>
             <Link to='/'>Forget Password</Link>
-            <Link to='login'>Don't have an account ? Signup</Link>
+            <Link to='/register'>Don't have an account ? Signup</Link>
           </div>
         </form>
       </div>

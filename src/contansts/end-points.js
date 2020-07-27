@@ -1,2 +1,3 @@
-export const HOST = 'https://api.spoonacular.com/';
-export const RECIPELIST = 'recipes/complexSearch';
+export const HOST = 'https://api.spoonacular.com/recipes/';
+export const RECIPELIST = 'complexSearch';
+export const INGREDENTTS = '/ingredientWidget.json';

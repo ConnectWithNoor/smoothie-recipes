@@ -17,6 +17,7 @@ export const handleRegister = async ({
         email: email,
         firstName: firstName,
         lastName: lastName,
+        fav: [],
       };
 
       await auth.createUserWithEmailAndPassword(email, password);
@@ -32,9 +33,9 @@ export const handleRegister = async ({
 
 export const handleSignin = async ({ email, password }) => {
   try {
-    const regRef = db.doc(`/users/${email}`);
+    const signInRef = db.doc(`/users/${email}`);
 
-    const { exists } = await regRef.get();
+    const { exists } = await signInRef.get();
 
     if (!exists) throw new Error('User Does not exist');
     else {
@@ -48,13 +49,31 @@ export const handleSignin = async ({ email, password }) => {
   }
 };
 
-export const handleAddFavourite = async (email) => {
+export const handleAddFavourite = async (email, recipeID) => {
   try {
-    // code here
-    alert(email);
+    const favRef = db.doc(`/users/${email}`);
+
+    const UserSnap = await favRef.get();
+    if (!UserSnap.exists)
+      return alert(
+        'You need to signin before marking this recipe as favourite.'
+      );
+
+    const userData = UserSnap.data();
+
+    if (userData.fav.some((id) => id === recipeID))
+      return alert('Already favourited');
+
+    const newData = {
+      ...userData,
+      fav: [...userData?.fav, recipeID],
+    };
+
+    await favRef.set(newData);
+    return alert('Added Recipe to Favourites');
   } catch (error) {
     console.log('error', error);
-    throw new Error(error);
+    alert('Something went wrong');
   }
 };
 

@@ -65,7 +65,7 @@ const RecipeView = () => {
               className='fav-icon'
               src={require('../assets/images/heart-fav.png')}
               alt='heart'
-              onClick={() => handleAddFavourite(Auth)}
+              onClick={() => handleAddFavourite(Auth, id)}
             />
           </div>
 

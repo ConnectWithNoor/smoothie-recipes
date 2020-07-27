@@ -19,13 +19,13 @@ export const handleRegister = async ({
         lastName: lastName,
       };
 
+      await auth.createUserWithEmailAndPassword(email, password);
       await regRef.set(newUser);
-      await auth.signInWithEmailAndPassword(email, password);
 
       return true;
     }
   } catch (error) {
     console.log('error', error);
-    throw new Error('OOPS!! Something went wrong Probably User Already Exists');
+    throw new Error(error);
   }
 };

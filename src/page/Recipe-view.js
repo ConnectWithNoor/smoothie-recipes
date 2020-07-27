@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import { HOST, INFORMATION } from '../contansts/end-points';
+import { AuthContext } from '../context/Auth';
+import { handleAddFavourite } from '../util/functions';
 
 const RecipeView = () => {
   const { id } = useParams();
+  const { Auth } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [ingredients, setIngredients] = useState([]);
@@ -18,8 +21,6 @@ const RecipeView = () => {
         const response = await axios.get(
           `${HOST}/${id}/${INFORMATION}?apiKey=${process.env.REACT_APP_API_TOKEN}`
         );
-
-        console.log(response);
 
         if (response.status !== 200) {
           return setError('Something Went Wrong');
@@ -38,8 +39,6 @@ const RecipeView = () => {
 
     fetchRecipiesWithIngrediants();
   }, [id]);
-
-  console.log('123', ingredients);
 
   return (
     <>
@@ -60,6 +59,13 @@ const RecipeView = () => {
               className='recipe-img'
               src={`${ingredients.image}`}
               alt='smoothie'
+            />
+
+            <img
+              className='fav-icon'
+              src={require('../assets/images/heart-fav.png')}
+              alt='heart'
+              onClick={() => handleAddFavourite(Auth)}
             />
           </div>
 

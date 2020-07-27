@@ -38,7 +38,7 @@ const Login = () => {
           </div>
 
           <button className='btn-reg' type='submit'>
-            Sign up
+            Sign in
           </button>
           <div className='cta-register'>
             <Link to='/'>Forget Password</Link>

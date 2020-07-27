@@ -33,6 +33,7 @@ body {
 
 .flex {
   display: flex;
+  flex-wrap: wrap;
 }
 
 h1 {
@@ -84,6 +85,13 @@ a {
   background: #fff;
   padding: 1rem;
   margin: 1rem;
+
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .img-wrapper {
@@ -104,7 +112,8 @@ a {
 
 /* pages */
 
-.home {
+.home,
+.Favourites {
   padding: 3rem;
 }
 

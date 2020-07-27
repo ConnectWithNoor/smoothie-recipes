@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
 
 import Home from './page/Home';
 import Favourites from './page/Favourites';
@@ -8,10 +7,15 @@ import Login from './page/Login';
 import Register from './page/Register';
 import RecipeView from './page/Recipe-view';
 
+import Header from './Component/Header';
+
+import './App.css';
+
 function App() {
   return (
     <div>
       <Router>
+        <Header />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/favourites' component={Favourites} />

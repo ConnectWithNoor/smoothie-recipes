@@ -29,3 +29,21 @@ export const handleRegister = async ({
     throw new Error(error);
   }
 };
+
+export const handleSignin = async ({ email, password }) => {
+  try {
+    const regRef = db.doc(`/users/${email}`);
+
+    const { exists } = await regRef.get();
+
+    if (!exists) throw new Error('User Does not exist');
+    else {
+      await auth.signInWithEmailAndPassword(email, password);
+
+      return true;
+    }
+  } catch (error) {
+    console.log('error', error);
+    throw new Error(error);
+  }
+};

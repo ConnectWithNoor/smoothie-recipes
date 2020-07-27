@@ -1,7 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
+import { handleSignin } from '../util/functions';
 
 const Login = () => {
+  const history = useHistory();
+
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const isCreated = await handleSignin(user);
+      if (isCreated) {
+        alert('Signin successful');
+        history.push('/');
+      } else {
+        alert(isCreated.error);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <div className='login'>
       <div className='center'>
@@ -12,18 +45,24 @@ const Login = () => {
         />
         <p className='login-title'>Sign in</p>
 
-        <form className='login-form'>
+        <form className='login-form' onSubmit={handleSubmit}>
           <input
             className='input'
             type='email'
             placeholder='Email Address *'
             required
+            name='email'
+            value={user.email}
+            onChange={handleChange}
           />
           <input
             className='input'
             type='password'
             placeholder='Password *'
             required
+            name='password'
+            value={user.password}
+            onChange={handleChange}
           />
 
           <div className='remember'>

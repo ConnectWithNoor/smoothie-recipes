@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-import { HOST, INGREDENTTS } from '../contansts/end-points';
+import { HOST, INFORMATION } from '../contansts/end-points';
 
 const RecipeView = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const RecipeView = () => {
 
       try {
         const response = await axios.get(
-          `${HOST}/${id}/${INGREDENTTS}?apiKey=${process.env.REACT_APP_API_TOKEN}`
+          `${HOST}/${id}/${INFORMATION}?apiKey=${process.env.REACT_APP_API_TOKEN}`
         );
 
         console.log(response);
@@ -25,7 +25,7 @@ const RecipeView = () => {
           return setError('Something Went Wrong');
         }
 
-        setIngredients(response.data.results);
+        setIngredients(response.data);
 
         return;
       } catch (error) {
@@ -58,19 +58,19 @@ const RecipeView = () => {
           <div className='img-wrapper'>
             <img
               className='recipe-img'
-              src={require('../assets/images/smoothie.png')}
+              src={`${ingredients.image}`}
               alt='smoothie'
             />
           </div>
 
-          <p className='recipe-title'>Bablish Apple Pie Smoothie</p>
+          <p className='recipe-title'>{ingredients.title}</p>
 
           <ul className='recipe-ingredients'>
-            {/* {ingredients.map((ing, index) => (
+            {ingredients?.extendedIngredients?.map((ing, index) => (
               <li key={ing.id}>
-                {index + 1} - {ing.name}
+                {index + 1} - {ing.originalName}
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
       )}

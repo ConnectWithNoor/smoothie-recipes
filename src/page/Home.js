@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import RecipeCard from '../Component/RecipeCard';
 import { HOST, RECIPELIST } from '../contansts/end-points';
 
-import { RecipesListContext } from '../context/RecipesList';
-
 const Home = () => {
-  const { setRecipesList } = useContext(RecipesListContext);
-
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [recipes, setRecipes] = useState([]);
@@ -25,7 +21,6 @@ const Home = () => {
         if (response.status !== 200) {
           return setError('Something Went Wrong');
         }
-        await setRecipesList(response.data.results);
         setRecipes(response.data.results);
 
         return;

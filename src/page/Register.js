@@ -1,7 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
+import { handleRegister } from '../util/functions';
 
 const Register = () => {
+  const history = useHistory();
+
+  const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const isCreated = await handleRegister(user);
+      if (isCreated) {
+        alert('Registraton successful');
+        history.push('/');
+      } else {
+        alert(isCreated.error);
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   return (
     <div className='register'>
       <div className='center'>
@@ -12,19 +47,25 @@ const Register = () => {
         />
         <p className='register-title'>Sign up</p>
 
-        <form className='register-form'>
+        <form className='register-form' onSubmit={handleSubmit}>
           <div className='flex'>
             <input
               className='input'
               type='text'
               placeholder='First Name *'
               required
+              name='firstName'
+              onChange={handleChange}
+              value={user.firstName}
             />
             <input
               className='input'
               type='text'
               placeholder='Last Name *'
               required
+              name='lastName'
+              onChange={handleChange}
+              value={user.lastName}
             />
           </div>
           <input
@@ -32,12 +73,18 @@ const Register = () => {
             type='email'
             placeholder='Email Address *'
             required
+            name='email'
+            onChange={handleChange}
+            value={user.email}
           />
           <input
             className='input'
             type='password'
             placeholder='Password *'
             required
+            name='password'
+            onChange={handleChange}
+            value={user.password}
           />
 
           <button className='btn-reg' type='submit'>

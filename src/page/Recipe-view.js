@@ -42,6 +42,17 @@ const RecipeView = () => {
     fetchRecipiesWithIngrediants();
   }, [id]);
 
+  const handleFavourite = async () => {
+    setIsLoading(true);
+    try {
+      await handleAddFavourite(Auth, id);
+    } catch (error) {
+      console.log('error', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -61,7 +72,7 @@ const RecipeView = () => {
               className='fav-icon'
               src={require('../assets/images/heart-fav.png')}
               alt='heart'
-              onClick={() => handleAddFavourite(Auth, id)}
+              onClick={handleFavourite}
             />
           </div>
 

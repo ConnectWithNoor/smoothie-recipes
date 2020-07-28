@@ -30,6 +30,9 @@ const Favourites = () => {
         return;
       } catch (error) {
         console.log('error', error);
+        if (error.message.includes(400)) {
+          return setError('No Recipes Favourited Yet');
+        }
         return setError('Something Went Wrong');
       } finally {
         setIsLoading(false);

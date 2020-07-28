@@ -3,13 +3,14 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDVi9pXGHJA8ykAi3_alUGnIGnx-u_ejOw',
-  authDomain: 'smoothi-recipes.firebaseapp.com',
-  databaseURL: 'https://smoothi-recipes.firebaseio.com',
-  projectId: 'smoothi-recipes',
-  storageBucket: 'smoothi-recipes.appspot.com',
-  messagingSenderId: '32919884700',
-  appId: '1:32919884700:web:1cf7593175715649ccae59',
+  apiKey: 'AIzaSyBrdYAn2aCJoseJsFGgM2Uifus6JzQVzEU',
+  authDomain: 'smoothie-recipes1.firebaseapp.com',
+  databaseURL: 'https://smoothie-recipes1.firebaseio.com',
+  projectId: 'smoothie-recipes1',
+  storageBucket: 'smoothie-recipes1.appspot.com',
+  messagingSenderId: '652025812367',
+  appId: '1:652025812367:web:8f0a2a9dacbdf7ca0ca7fa',
+  measurementId: 'G-DP78MYZR0J',
 };
 firebase.initializeApp(firebaseConfig);
 
